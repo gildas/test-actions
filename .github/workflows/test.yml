@@ -19,7 +19,9 @@ jobs:
           echo "Current folder: $PWD"
           echo "$GOOGLE_CREDENTIALS" > gcloud-key.json
       - name: Test package
-        run: go test ./...
+        run: |
+          echo "Current folder: $PWD"
+          go test ./...
         env:
           GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
           GOOGLE_CREDENTIALS: "gcloud-key.json"
