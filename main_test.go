@@ -20,6 +20,7 @@ func TestHasProperEnv(t *testing.T) {
 	filename, ok := os.LookupEnv("GOOGLE_CREDENTIALS")
 	assert.True(t, ok)
 	payload, err := ioutil.ReadFile(filename)
-	assert.NotNil(t, err)
+	assert.Nil(t, err)
 	assert.True(t, strings.Contains(string(payload), "END PRIVATE KEY"))
+	t.Logf("Length=%d", len(string(payload)))
 }
