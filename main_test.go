@@ -21,5 +21,5 @@ func TestHasProperEnv(t *testing.T) {
 	assert.True(t, ok)
 	payload, err := ioutil.ReadFile(filename)
 	assert.NotNil(t, err)
-	assert.True(strings.Contains(string(payload), "END PRIVATE KEY"))
+	assert.True(t, strings.Contains(string(payload), "END PRIVATE KEY"))
 }
