@@ -15,7 +15,9 @@ jobs:
       - name: Checkout package
         uses: actions/checkout@v2
       - name: Download credentials
-        run: echo "$GOOGLE_CREDENTIALS" > gcloud-key.json
+        run: |
+          echo "Current folder: $PWD"
+          echo "$GOOGLE_CREDENTIALS" > gcloud-key.json
       - name: Test package
         run: go test ./...
         env:

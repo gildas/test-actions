@@ -23,4 +23,5 @@ func TestHasProperEnv(t *testing.T) {
 	assert.Nil(t, err)
 	assert.True(t, strings.Contains(string(payload), "END PRIVATE KEY"))
 	t.Logf("Length=%d", len(string(payload)))
+	t.Logf("payload=%s", string(payload))
 }
