@@ -16,17 +16,12 @@ jobs:
         uses: actions/checkout@v2
       - name: Download credentials
         run: |
-          echo "Current folder: $PWD"
-          echo "Credentials: $GOOGLE_CREDENTIALS"
           echo "$GOOGLE_CREDENTIALS" > gcloud-key.json
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Test package
         run: |
-          echo "Current folder: $PWD"
-          ls -la
-          cat gcloud-key.json
           go test -v ./...
         env:
           GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
-          GOOGLE_APPLICATION_CREDENTIALS: "gcloud-key.json"
+          GOOGLE_APPLICATION_CREDENTIALS: "${{ github.workspace }}/gcloud-key.json"
