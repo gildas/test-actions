@@ -1,7 +1,9 @@
 package main
 
 import (
+	"io/ioutil"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -15,4 +17,9 @@ func TestHasProperEnv(t *testing.T) {
 	data, ok := os.LookupEnv("GOOGLE_PROJECT_ID")
 	assert.True(t, ok)
 	assert.True(t, len(data) > 0)
+	filename, ok := os.LookupEnv("GOOGLE_CREDENTIALS")
+	assert.True(t, ok)
+	payload, err := ioutil.ReadFile(filename)
+	assert.NotNil(t, err)
+	assert.True(strings.Contains(string(payload), "END PRIVATE KEY"))
 }
