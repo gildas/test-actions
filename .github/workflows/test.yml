@@ -22,7 +22,11 @@ jobs:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Test package
         run: |
-          go test -v ./...
+          go test -v -coverprofile=coverage.out -covermode=count ./...
         env:
           GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
           GOOGLE_APPLICATION_CREDENTIALS: "${{ github.workspace }}/gcloud-key.json"
+      - name: Upload Coverage Report
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage.out
