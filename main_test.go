@@ -13,6 +13,6 @@ func TestCanAdd(t *testing.T) {
 
 func TestHasProperEnv(t *testing.T) {
 	data, ok := os.LookupEnv("GOOGLE_PROJECT_ID")
-	assert().True(t, ok)
-	assert().True(t, len(data) > 0)
+	assert.True(t, ok)
+	assert.True(t, len(data) > 0)
 }
